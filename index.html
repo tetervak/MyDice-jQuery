@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/footer.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/main.mjs" type="module"></script>
+    <script src="js/footer.js"></script>
+    <title>My Dice</title>
+</head>
+<body>
+    <header><h1>My Dice</h1></header>
+    <main>
+        <h2>Roll the Dice</h2>
+        <p id="dice"></p>
+        <p>
+            <span class="total_label">Total:</span>
+            <span id="total" class="total_number">6</span>
+        </p>
+        <p>
+            <label for="c">Number of Dice:</label>
+            <select id="c" name="count"></select>
+        </p>
+        <p><button id="roll">Roll Dice</button></p>
+    </main>
+</body>
+</html>
