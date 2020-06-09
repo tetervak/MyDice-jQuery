@@ -1,6 +1,6 @@
 import { Game } from "./modules/game.mjs"
-let numberOfDice = 3;
-let maxNumberOfDice = 5;
+let numberOfDice = 3; // the current number of dice
+let maxNumberOfDice = 5; // the max number in the select (can be changed here)
 let game = new Game(numberOfDice);
 game.rollDice();
 let $select; // select tag to input the number of dice
