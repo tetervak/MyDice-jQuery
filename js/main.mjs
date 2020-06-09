@@ -63,7 +63,7 @@ function updateTotal() {
 }
 
 function handleRollButtonClicks() {
-    $("#roll").click(function () {
+    $("#roll_button").click(function () {
         game.rollDice();
         $dice.find("img").each(function(index){
             let number = game.dice[index].number;
