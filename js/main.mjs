@@ -1,4 +1,6 @@
 import { Game } from "./modules/game.mjs"
+import { isGameSaved, loadSides, saveSides} from "./modules/saving.mjs";
+
 let maxNumberOfDice = 5; // the max number in the select (can be changed here)
 let game = new Game(); // the game object
 if(isGameSaved()){
@@ -31,18 +33,6 @@ $(document).ready(function(){
     handleSelectionChanges();
     handleRollButtonClicks();
 });
-
-function saveSides(game, key="diceSides"){
-    localStorage[key] = JSON.stringify(game.sides);
-}
-
-function loadSides(game, key="diceSides"){
-    game.sides = JSON.parse(localStorage[key]);
-}
-
-function isGameSaved(key = "diceSides"){
-    return localStorage.getItem(key) != null;
-}
 
 function dieImageSrc(side) {
     return `images/dice/side_${side}.png`;
