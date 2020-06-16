@@ -11,6 +11,8 @@ class Die {
     }
     set num(num){
         console.log("set num() is called");
+        console.assert(num > 0, "num must be > 0");
+        console.assert(num <= 6, "num must be <= 6");
         this.n = num;
     }
 }
