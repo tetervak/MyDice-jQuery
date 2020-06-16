@@ -1,14 +1,20 @@
 import { Game } from "./modules/game.mjs"
-let numberOfDice = 3; // the current number of dice
 let maxNumberOfDice = 5; // the max number in the select (can be changed here)
-let game = new Game(numberOfDice);
-game.rollDice();
+let game = new Game(); // the game object
+if(isGameSaved()){
+    loadSides(game);
+}else{
+    game.rollDice();
+}
+let numberOfDice = game.numberOfDice; // the current number of dice
+console.log(game);
+
 let $select; // select tag to input the number of dice
 let $dice; // tag to contain the image tags
 let $total; // tag for the displayed number
-let images = []; // for image preloading
 
 // preload dice image files to reduce flickering
+let images = [];
 for (let i = 1; i <= 6; i++) {
     let image = new Image();
     image.src = dieImageSrc(i);
@@ -26,15 +32,27 @@ $(document).ready(function(){
     handleRollButtonClicks();
 });
 
-function dieImageSrc(number) {
-    return `images/dice/side_${number}.png`;
+function saveSides(game, key="diceSides"){
+    localStorage[key] = JSON.stringify(game.sides);
+}
+
+function loadSides(game, key="diceSides"){
+    game.sides = JSON.parse(localStorage[key]);
+}
+
+function isGameSaved(key = "diceSides"){
+    return localStorage.getItem(key) != null;
+}
+
+function dieImageSrc(side) {
+    return `images/dice/side_${side}.png`;
 }
 
 function insertImages() {
     for (let die of game.dice) {
-        let number = die.number;
-        let src = dieImageSrc(number);
-        $dice.append(`<img src="${src}" alt="side ${number}">`);
+        let side = die.side;
+        let src = dieImageSrc(side);
+        $dice.append(`<img src="${src}" alt="side ${side}">`);
     }
 }
 
@@ -46,6 +64,7 @@ function insertSelectOptions() {
 
 function handleSelectionChanges() {
     $select.change(function () {
+        console.log("the change event handler is called");
         let count = parseInt($select.val());
         if (count !== numberOfDice) {
             numberOfDice = count;
@@ -54,6 +73,7 @@ function handleSelectionChanges() {
             $dice.html("");
             insertImages();
             updateTotal();
+            saveSides(game);
         }
     });
 }
@@ -64,13 +84,15 @@ function updateTotal() {
 
 function handleRollButtonClicks() {
     $("#roll_button").click(function () {
+        console.log("the click event handler is called");
         game.rollDice();
         $dice.find("img").each(function(index){
-            let number = game.dice[index].side;
-            let src = dieImageSrc(number);
-            $(this).attr("src", src).attr("alt", `side ${number}`);
+            let side = game.dice[index].side;
+            let src = dieImageSrc(side);
+            $(this).attr("src", src).attr("alt", `side ${side}`);
         });
         updateTotal();
+        saveSides(game);
     });
 }
 
