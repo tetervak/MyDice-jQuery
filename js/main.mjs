@@ -1,7 +1,7 @@
 import { Game } from "./modules/game.mjs"
 import { isGameSaved, loadSides, saveSides} from "./modules/saving.mjs";
 
-let maxNumberOfDice = 5; // the max number in the select (can be changed here)
+const maxNumberOfDice = 5; // the max number in the select (can be changed here)
 let game = new Game(); // the game object
 if(isGameSaved()){
     loadSides(game);
