@@ -1,9 +1,17 @@
 class Die {
-    constructor(number= 1){
-        this.number = number;
+    constructor(num= 1){
+        this.num = num;
     }
     rollDie() {
-        this.number = Math.floor(1 + 6 * Math.random());
+        this.num = Math.floor(1 + 6 * Math.random());
+    }
+    get num(){
+        console.log("get num() is called");
+        return this.n;
+    }
+    set num(num){
+        console.log("set num() is called");
+        this.n = num;
     }
 }
 export { Die }
