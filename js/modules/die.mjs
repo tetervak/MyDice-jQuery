@@ -1,19 +1,19 @@
 class Die {
-    constructor(num= 1){
-        this.num = num;
+    constructor(side= 1){
+        this.side = side;
     }
     rollDie() {
-        this.num = Math.floor(1 + 6 * Math.random());
+        this.side = Math.floor(1 + 6 * Math.random());
     }
-    get num(){
-        console.log("get num() is called");
+    get side(){
+        console.log("get side() is called");
         return this.n;
     }
-    set num(num){
-        console.log("set num() is called");
-        console.assert(num > 0, "num must be > 0");
-        console.assert(num <= 6, "num must be <= 6");
-        this.n = num;
+    set side(side){
+        console.log("set side() is called");
+        console.assert(side > 0, "side must be > 0");
+        console.assert(side <= 6, "side must be <= 6");
+        this.n = side;
     }
 }
 export { Die }

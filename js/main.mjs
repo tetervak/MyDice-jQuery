@@ -66,7 +66,7 @@ function handleRollButtonClicks() {
     $("#roll_button").click(function () {
         game.rollDice();
         $dice.find("img").each(function(index){
-            let number = game.dice[index].number;
+            let number = game.dice[index].side;
             let src = dieImageSrc(number);
             $(this).attr("src", src).attr("alt", `side ${number}`);
         });
